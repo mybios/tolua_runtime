@@ -45,13 +45,35 @@
 
 #define abs_index(L, i)  ((i) > 0 || (i) <= LUA_REGISTRYINDEX ? (i) : lua_gettop(L) + (i) + 1)
 
-void tolua_openint64(lua_State* L);
-int  tolua_newint64(lua_State* L);
-void tolua_pushint64(lua_State* L, int64_t n);
-
-void tolua_openuint64(lua_State* L);
-int  tolua_newuint64(lua_State* L);
+//void tolua_openint64(lua_State* L);
+//int  tolua_newint64(lua_State* L);
+//void tolua_pushint64(lua_State* L, int64_t n);
+//
+//void tolua_openuint64(lua_State* L);
+//int  tolua_newuint64(lua_State* L);
 
 extern int toluaflags;
+
+
+
+#undef lua_equal
+#define lua_equal(L,idx1,idx2)  lua_compare(L,(idx1),(idx2),LUA_OPEQ)
+
+#undef lua_getfenv
+#define lua_getfenv	lua_getuservalue
+#undef lua_setfenv
+#define lua_setfenv	lua_setuservalue
+
+#undef lua_objlen
+#define lua_objlen	lua_rawlen
+
+#undef luaL_register
+#define luaL_register(L,n,f) \
+	{ if ((n) == NULL) luaL_setfuncs(L,f,0); else luaL_newlib(L,f); }
+#define LUA_QL(x)	"'" x "'"
+#define LUA_QS		LUA_QL("%s")
+
+#define lua_getref(L, ref) lua_rawgeti(L, LUA_REGISTRYINDEX, ref)
+
 
 #endif

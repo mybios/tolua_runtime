@@ -28,8 +28,11 @@
 #include <lua.h>
 #include <lualib.h>
 #include <lauxlib.h>
+#undef luaL_register
+#define luaL_register(L,n,f) \
+	{ if ((n) == NULL) luaL_setfuncs(L,f,0); else luaL_newlib(L,f); }
 
-#ifdef _WIN32_WCE
+#ifdef _WINDOWS
 #define PACKED_DECL 
 #pragma pack(1)
 #else
@@ -45,8 +48,8 @@ struct __una_16  { int16_t  x PACKED_DECL; };
 struct __una_f   { float    x PACKED_DECL; };
 struct __una_d   { double   x PACKED_DECL; };
 
-#ifdef _WIN32_WCE
-#pragma pack
+#ifdef _WINDOWS
+#pragma pack()
 #endif
 
 static inline uint64_t __uld64(const void * r11)

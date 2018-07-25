@@ -1196,8 +1196,8 @@ LUALIB_API bool tolua_beginmodule(lua_State *L, const char *name)
         return false;
     }
     else
-    {                
-        lua_pushvalue(L, LUA_GLOBALSINDEX);
+    {            
+		lua_pushglobaltable(L);
         return true;
     }                
 }
@@ -1223,7 +1223,7 @@ static int class_new_event(lua_State *L)
 {         
     if (!lua_istable(L, 1))
     {
-        return luaL_typerror(L, 1, "table");        
+        return luaL_argerror(L, 1, "table");
     }
 
     int count = lua_gettop(L); 
@@ -1523,7 +1523,7 @@ LUA_API int tolua_getvaluetype(lua_State *L, int stackPos)
 LUALIB_API bool tolua_createtable(lua_State *L, const char *path, int szhint)
 {
 	const char *e = NULL;
-	lua_pushvalue(L, LUA_GLOBALSINDEX);						//stack _G
+	lua_pushglobaltable(L);						//stack _G
 
 	do 
 	{
@@ -1558,7 +1558,7 @@ LUALIB_API bool tolua_beginpremodule(lua_State *L, const char *path, int szhint)
 {
     const char *e = NULL;
     const char *name = path;
-    lua_pushvalue(L, LUA_GLOBALSINDEX);                     //stack _G
+    lua_pushglobaltable(L);                     //stack _G
 
     do 
     {
@@ -1621,7 +1621,7 @@ LUALIB_API bool tolua_addpreload(lua_State *L, const char *path)
     const char *e = NULL;
     const char *name = path;
     int top = lua_gettop(L);
-    lua_pushvalue(L, LUA_GLOBALSINDEX);                         //stack _G
+    lua_pushglobaltable(L);                         //stack _G
 
     do 
     {
@@ -1673,7 +1673,7 @@ LUALIB_API int tolua_getclassref(lua_State *L, int pos)
 LUALIB_API bool tolua_pushluatable(lua_State *L, const char *path)
 {
 	const char *e = NULL;
-	lua_pushvalue(L, LUA_GLOBALSINDEX);	
+	lua_pushglobaltable(L);	
 
 	do 
 	{
@@ -2181,8 +2181,8 @@ static const struct luaL_Reg tolua_funcs[] =
     { "getfunction", tolua_bnd_getfunction},
     { "initset", tolua_initsettable},
     { "initget", tolua_initgettable},
-    { "int64", tolua_newint64},        
-    { "uint64", tolua_newuint64},
+    //{ "int64", tolua_newint64},        
+    //{ "uint64", tolua_newuint64},
     { "traceback", traceback},
 	{ NULL, NULL }
 };
@@ -2199,7 +2199,7 @@ void tolua_setluabaseridx(lua_State *L)
 	lua_pushthread(L);
 	lua_rawseti(L, LUA_REGISTRYINDEX, LUA_RIDX_MAINTHREAD);
 
-	lua_pushvalue(L, LUA_GLOBALSINDEX);
+	lua_pushglobaltable(L);
 	lua_rawseti(L, LUA_REGISTRYINDEX, LUA_RIDX_GLOBALS);
 
     //cache require函数
@@ -2225,9 +2225,11 @@ void tolua_opentraceback(lua_State *L)
     lua_pushstring(L, "traceback");
     lua_rawget(L, -2);
     lua_pushvalue(L, -1);
-    lua_setfield(L, LUA_GLOBALSINDEX, "traceback");            
+	lua_rawgeti(L, LUA_REGISTRYINDEX, LUA_RIDX_GLOBALS);
+    lua_setfield(L, -1, "traceback");            
+	lua_pop(L, 1);
     lua_rawseti(L, LUA_REGISTRYINDEX, LUA_RIDX_TRACEBACK);
-    lua_pop(L, 1);    
+    lua_pop(L, 1);
 
     lua_pushcfunction(L, traceback);
     lua_rawseti(L, LUA_REGISTRYINDEX, LUA_RIDX_CUSTOMTRACEBACK);    
@@ -2570,8 +2572,8 @@ LUALIB_API void tolua_openlibs(lua_State *L)
     tolua_openpreload(L);
     tolua_openubox(L);
     tolua_openfixedmap(L);    
-    tolua_openint64(L);
-    tolua_openuint64(L);
+    //tolua_openint64(L);
+    //tolua_openuint64(L);
     tolua_openvptr(L);    
     //tolua_openrequire(L);
 
