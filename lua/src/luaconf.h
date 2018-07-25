@@ -617,8 +617,11 @@
 ** Change that if you do not want to use C locales. (Code using this
 ** macro must include header 'locale.h'.)
 */
+//#if !defined(lua_getlocaledecpoint)
+//#define lua_getlocaledecpoint()		(localeconv()->decimal_point[0])
+//#endif
 #if !defined(lua_getlocaledecpoint)
-#define lua_getlocaledecpoint()		(localeconv()->decimal_point[0])
+#define lua_getlocaledecpoint()        ('.')
 #endif
 
 /* }================================================================== */
