@@ -183,6 +183,9 @@
     <ClCompile Include="..\lua\src\lzio.c">
       <Filter>lua</Filter>
     </ClCompile>
+    <ClCompile Include="..\lua_api.c">
+      <Filter>tolua</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\lpeg.h">

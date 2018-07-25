@@ -37,13 +37,6 @@
 #include "lauxlib.h"
 
 
-#if (LUA_VERSION_NUM >= 502)
-
-#define luaL_register(L,n,f)	luaL_newlib(L,f)
-
-#endif
-
-
 /* basic integer type */
 #if !defined(STRUCT_INT)
 #define STRUCT_INT	long
@@ -391,7 +384,7 @@ static const struct luaL_Reg thislib[] = {
 LUALIB_API int luaopen_struct (lua_State *L);
 
 LUALIB_API int luaopen_struct (lua_State *L) {
-  luaL_register(L, "struct", thislib);
+  luaL_newlib(L, thislib);
   return 1;
 }
 

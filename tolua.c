@@ -266,9 +266,9 @@ LUA_API bool tolua_toboolean(lua_State *L, int idx)
     return value == 0 ? false : true;
 }
 
-LUA_API int32_t tolua_tointeger(lua_State *L, int idx) 
+LUA_API lua_Integer tolua_tointeger(lua_State *L, int idx)
 {
-    return (int32_t)lua_tointeger(L, idx);
+    return lua_tointeger(L, idx);
 }
 
 LUALIB_API int tolua_loadbuffer(lua_State *L, const char *buff, int sz, const char *name)
@@ -2189,20 +2189,13 @@ static const struct luaL_Reg tolua_funcs[] =
 
 void tolua_setluabaseridx(lua_State *L)
 {    
-	for (int i = 1; i <= 64; i++)
+	for (int i = LUA_RIDX_LAST + 1; i <= 64; i++)
 	{
 		lua_pushinteger(L, i);
 		lua_rawseti(L, LUA_REGISTRYINDEX, i);
 	}
 
-    //同lua5.1.5之后版本放入mainstate和_G
-	lua_pushthread(L);
-	lua_rawseti(L, LUA_REGISTRYINDEX, LUA_RIDX_MAINTHREAD);
-
-	lua_pushglobaltable(L);
-	lua_rawseti(L, LUA_REGISTRYINDEX, LUA_RIDX_GLOBALS);
-
-    //cache require函数
+	//cache require函数
     lua_getglobal(L, "require");
     lua_rawseti(L, LUA_REGISTRYINDEX, LUA_RIDX_REQUIRE);      
 }
@@ -2561,6 +2554,7 @@ static const struct luaL_Reg tolua_mathf[] =
     { NULL, NULL }
 };
 
+
 LUALIB_API void tolua_openlibs(lua_State *L)
 {   
     initmodulebuffer();
@@ -2577,10 +2571,9 @@ LUALIB_API void tolua_openlibs(lua_State *L)
     tolua_openvptr(L);    
     //tolua_openrequire(L);
 
-    luaL_register(L, "Mathf", tolua_mathf);     
-    luaL_register(L, "tolua", tolua_funcs);    
-
-    lua_getglobal(L, "tolua");
+	luaL_newlib(L, tolua_funcs);
+	lua_pushvalue(L, -1);
+	lua_setglobal(L, "tolua");
 
     lua_pushstring(L, "gettag");
     lua_pushlightuserdata(L, &gettag);

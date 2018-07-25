@@ -67,9 +67,6 @@ extern int toluaflags;
 #undef lua_objlen
 #define lua_objlen	lua_rawlen
 
-#undef luaL_register
-#define luaL_register(L,n,f) \
-	{ if ((n) == NULL) luaL_setfuncs(L,f,0); else luaL_newlib(L,f); }
 #define LUA_QL(x)	"'" x "'"
 #define LUA_QS		LUA_QL("%s")
 

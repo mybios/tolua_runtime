@@ -17,33 +17,15 @@
 
 #include "lpeg.h"
 
-
 #define VERSION		"0.10"
 #define PATTERN_T	"lpeg-pattern"
 #define MAXSTACKIDX	"lpeg-maxstack"
 
 
-/*
-** compatibility with Lua 5.2
-*/
-//#if (LUA_VERSION_NUM == 502)
-
-#undef lua_equal
-#define lua_equal(L,idx1,idx2)  lua_compare(L,(idx1),(idx2),LUA_OPEQ)
-
 #undef lua_getfenv
 #define lua_getfenv	lua_getuservalue
 #undef lua_setfenv
 #define lua_setfenv	lua_setuservalue
-
-#undef lua_objlen
-#define lua_objlen	lua_rawlen
-
-#undef luaL_register
-#define luaL_register(L,n,f) \
-	{ if ((n) == NULL) luaL_setfuncs(L,f,0); else luaL_newlib(L,f); }
-
-//#endif
 
 
 
@@ -2390,8 +2372,9 @@ int luaopen_lpeg (lua_State *L) {
   luaL_newmetatable(L, PATTERN_T);
   lua_pushnumber(L, MAXBACK);
   lua_setfield(L, LUA_REGISTRYINDEX, MAXSTACKIDX);
-  luaL_register(L, NULL, metapattreg);
-  luaL_register(L, "lpeg", pattreg);
+  luaL_newlib(L, metapattreg);
+  luaL_newlib(L, pattreg);
+
   lua_pushliteral(L, "__index");
   lua_pushvalue(L, -2);
   lua_settable(L, -4);

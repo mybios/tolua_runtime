@@ -28,9 +28,6 @@
 #include <lua.h>
 #include <lualib.h>
 #include <lauxlib.h>
-#undef luaL_register
-#define luaL_register(L,n,f) \
-	{ if ((n) == NULL) luaL_setfuncs(L,f,0); else luaL_newlib(L,f); }
 
 #ifdef _WINDOWS
 #define PACKED_DECL 
@@ -769,8 +766,9 @@ LUALIB_API int luaopen_pb (lua_State *L)
     luaL_newmetatable(L, IOSTRING_META);
     lua_pushvalue(L, -1);
     lua_setfield(L, -2, "__index");
-    luaL_register(L, NULL, _c_iostring_m);
+	luaL_newlib(L, _c_iostring_m);
 
-    luaL_register(L, "pb", _pb);
+	luaL_newlib(L, _pb);
+
     return 1;
 } 
