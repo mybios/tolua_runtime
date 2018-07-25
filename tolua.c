@@ -2571,6 +2571,9 @@ LUALIB_API void tolua_openlibs(lua_State *L)
     tolua_openvptr(L);    
     //tolua_openrequire(L);
 
+	luaL_newlib(L, tolua_mathf);
+	lua_setglobal(L, "Mathf");
+
 	luaL_newlib(L, tolua_funcs);
 	lua_pushvalue(L, -1);
 	lua_setglobal(L, "tolua");

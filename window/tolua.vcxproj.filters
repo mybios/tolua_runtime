@@ -19,6 +19,9 @@
     <Filter Include="luasocket">
       <UniqueIdentifier>{f3c54d85-254f-49d5-9814-9c312de28784}</UniqueIdentifier>
     </Filter>
+    <Filter Include="pbc">
+      <UniqueIdentifier>{20dcc309-d733-4bd7-89a4-86ba11402f62}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\lpeg.c">
@@ -186,6 +189,48 @@
     <ClCompile Include="..\lua_api.c">
       <Filter>tolua</Filter>
     </ClCompile>
+    <ClCompile Include="..\pbc\wmessage.c">
+      <Filter>pbc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\pbc\alloc.c">
+      <Filter>pbc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\pbc\array.c">
+      <Filter>pbc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\pbc\bootstrap.c">
+      <Filter>pbc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\pbc\context.c">
+      <Filter>pbc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\pbc\decode.c">
+      <Filter>pbc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\pbc\map.c">
+      <Filter>pbc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\pbc\pattern.c">
+      <Filter>pbc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\pbc\pbc-lua53.c">
+      <Filter>pbc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\pbc\proto.c">
+      <Filter>pbc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\pbc\register.c">
+      <Filter>pbc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\pbc\rmessage.c">
+      <Filter>pbc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\pbc\stringpool.c">
+      <Filter>pbc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\pbc\varint.c">
+      <Filter>pbc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\lpeg.h">
@@ -331,6 +376,39 @@
     </ClInclude>
     <ClInclude Include="..\lua\src\lua.h">
       <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\pbc\alloc.h">
+      <Filter>pbc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\pbc\array.h">
+      <Filter>pbc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\pbc\bootstrap.h">
+      <Filter>pbc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\pbc\context.h">
+      <Filter>pbc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\pbc\descriptor.pbc.h">
+      <Filter>pbc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\pbc\map.h">
+      <Filter>pbc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\pbc\pattern.h">
+      <Filter>pbc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\pbc\pbc.h">
+      <Filter>pbc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\pbc\proto.h">
+      <Filter>pbc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\pbc\stringpool.h">
+      <Filter>pbc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\pbc\varint.h">
+      <Filter>pbc</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

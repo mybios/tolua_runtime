@@ -72,6 +72,20 @@
     <ClCompile Include="..\lua\src\lzio.c" />
     <ClCompile Include="..\lua_api.c" />
     <ClCompile Include="..\pb.c" />
+    <ClCompile Include="..\pbc\alloc.c" />
+    <ClCompile Include="..\pbc\array.c" />
+    <ClCompile Include="..\pbc\bootstrap.c" />
+    <ClCompile Include="..\pbc\context.c" />
+    <ClCompile Include="..\pbc\decode.c" />
+    <ClCompile Include="..\pbc\map.c" />
+    <ClCompile Include="..\pbc\pattern.c" />
+    <ClCompile Include="..\pbc\pbc-lua53.c" />
+    <ClCompile Include="..\pbc\proto.c" />
+    <ClCompile Include="..\pbc\register.c" />
+    <ClCompile Include="..\pbc\rmessage.c" />
+    <ClCompile Include="..\pbc\stringpool.c" />
+    <ClCompile Include="..\pbc\varint.c" />
+    <ClCompile Include="..\pbc\wmessage.c" />
     <ClCompile Include="..\struct.c" />
     <ClCompile Include="..\tolua.c" />
   </ItemGroup>
@@ -123,6 +137,17 @@
     <ClInclude Include="..\lua\src\lundump.h" />
     <ClInclude Include="..\lua\src\lvm.h" />
     <ClInclude Include="..\lua\src\lzio.h" />
+    <ClInclude Include="..\pbc\alloc.h" />
+    <ClInclude Include="..\pbc\array.h" />
+    <ClInclude Include="..\pbc\bootstrap.h" />
+    <ClInclude Include="..\pbc\context.h" />
+    <ClInclude Include="..\pbc\descriptor.pbc.h" />
+    <ClInclude Include="..\pbc\map.h" />
+    <ClInclude Include="..\pbc\pattern.h" />
+    <ClInclude Include="..\pbc\pbc.h" />
+    <ClInclude Include="..\pbc\proto.h" />
+    <ClInclude Include="..\pbc\stringpool.h" />
+    <ClInclude Include="..\pbc\varint.h" />
     <ClInclude Include="..\tolua.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
