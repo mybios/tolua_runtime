@@ -135,20 +135,25 @@ static time_t l_checktime (lua_State *L, int arg) {
 #endif				/* } */
 /* }================================================================== */
 
-
-//int System(const char *cmd)
-//{
-//    FILE *f = popen(cmd, "r");
-//    if(f)
-//    {
-//        fclose(f);
-//    }
-//    return 1;
-//}
+#ifdef __IOS__
+int IosSystem(const char *cmd)
+{
+    FILE *f = popen(cmd, "r");
+    if(f)
+    {
+        fclose(f);
+    }
+    return 1;
+}
+#endif
 
 static int os_execute (lua_State *L) {
   const char *cmd = luaL_optstring(L, 1, NULL);
+#ifdef __IOS__
+  int stat = IosSystem(cmd);
+#else
   int stat = system(cmd);
+#endif
   if (cmd != NULL)
     return luaL_execresult(L, stat);
   else {

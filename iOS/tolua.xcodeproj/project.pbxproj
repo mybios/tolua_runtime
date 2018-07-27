@@ -649,6 +649,10 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					__IOS__,
+					DEBUG,
+				);
 				HEADER_SEARCH_PATHS = ../lua/src;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -666,6 +670,7 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = __IOS__;
 				HEADER_SEARCH_PATHS = ../lua/src;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
