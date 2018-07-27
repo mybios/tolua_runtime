@@ -45,7 +45,7 @@ _wmessage_new(struct heap *h, struct _message *msg) {
 	return m;
 }
 
-struct pbc_wmessage * 
+LUALIB_API struct pbc_wmessage *
 pbc_wmessage_new(struct pbc_env * env, const char *type_name) {
 	struct _message * msg = _pbcP_get_message(env, type_name);
 	if (msg == NULL)
@@ -54,7 +54,7 @@ pbc_wmessage_new(struct pbc_env * env, const char *type_name) {
 	return _wmessage_new(h, msg);
 }
 
-void 
+LUALIB_API void
 pbc_wmessage_delete(struct pbc_wmessage *m) {
 	if (m) {
 		_pbcH_delete(m->heap);
@@ -132,7 +132,7 @@ int32_encode(uint32_t low, uint8_t * buffer) {
 	buffer[3] = (uint8_t)(low >> 24 & 0xff);
 }
 
-int 
+LUALIB_API int
 pbc_wmessage_integer(struct pbc_wmessage *m, const char *key, uint32_t low, uint32_t hi) {
 	struct _field * f = (struct _field *)_pbcM_sp_query(m->type->name,key);
 	if (f==NULL) {
@@ -202,7 +202,7 @@ pbc_wmessage_integer(struct pbc_wmessage *m, const char *key, uint32_t low, uint
 	return 0;
 }
 
-int
+LUALIB_API int
 pbc_wmessage_real(struct pbc_wmessage *m, const char *key, double v) {
 	struct _field * f = (struct _field *)_pbcM_sp_query(m->type->name,key);
 	if (f == NULL) {
@@ -240,7 +240,7 @@ pbc_wmessage_real(struct pbc_wmessage *m, const char *key, double v) {
 	return 0;
 }
 
-int
+LUALIB_API int
 pbc_wmessage_string(struct pbc_wmessage *m, const char *key, const char * v, int len) {
 	struct _field * f = (struct _field *)_pbcM_sp_query(m->type->name,key);
 	if (f == NULL) {
@@ -328,7 +328,7 @@ pbc_wmessage_string(struct pbc_wmessage *m, const char *key, const char * v, int
 	return 0;
 }
 
-struct pbc_wmessage * 
+LUALIB_API struct pbc_wmessage *
 pbc_wmessage_message(struct pbc_wmessage *m, const char *key) {
 	struct _field * f = (struct _field *)_pbcM_sp_query(m->type->name,key);
 	if (f == NULL) {
@@ -488,7 +488,7 @@ _pack_packed(void *p, void *ud) {
 	}
 }
 
-void * 
+LUALIB_API void *
 pbc_wmessage_buffer(struct pbc_wmessage *m, struct pbc_slice *slice) {
 	if (m->packed) {
 		_pbcM_sp_foreach_ud(m->packed , _pack_packed, m);

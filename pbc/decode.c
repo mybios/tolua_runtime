@@ -298,7 +298,7 @@ call_array(pbc_decoder pd, void * ud, struct _field *f, uint8_t * buffer , int s
 	}
 }
 
-int
+LUALIB_API int
 pbc_decode(struct pbc_env * env, const char * type_name , struct pbc_slice * slice, pbc_decoder pd, void *ud) {
 	struct _message * msg = _pbcP_get_message(env, type_name);
 	if (msg == NULL) {

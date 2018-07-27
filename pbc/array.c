@@ -84,13 +84,13 @@ _pbcA_index_p(pbc_array _array, int idx)
 	return &(a->a[idx]);
 }
 
-int 
+LUALIB_API int
 pbc_array_size(pbc_array _array) {
 	struct array * a = (struct array *)_array;
 	return a->number;
 }
 
-uint32_t 
+LUALIB_API uint32_t
 pbc_array_integer(pbc_array array, int index, uint32_t *hi) {
 	pbc_var var;
 	_pbcA_index(array , index , var);
@@ -100,14 +100,14 @@ pbc_array_integer(pbc_array array, int index, uint32_t *hi) {
 	return var->integer.low;
 }
 
-double 
+LUALIB_API double
 pbc_array_real(pbc_array array, int index) {
 	pbc_var var;
 	_pbcA_index(array , index , var);
 	return var->real;
 }
 
-struct pbc_slice *
+LUALIB_API struct pbc_slice *
 pbc_array_slice(pbc_array _array, int index) {
 	struct array * a = (struct array *)_array;
 	if (index <0 || index > a->number) {
@@ -116,7 +116,7 @@ pbc_array_slice(pbc_array _array, int index) {
 	return (struct pbc_slice *) &(a->a[index]);
 }
 
-void 
+LUALIB_API void
 pbc_array_push_integer(pbc_array array, uint32_t low, uint32_t hi) {
 	pbc_var var;
 	var->integer.low = low;
@@ -124,14 +124,14 @@ pbc_array_push_integer(pbc_array array, uint32_t low, uint32_t hi) {
 	_pbcA_push(array,var);
 }
 
-void 
+LUALIB_API void
 pbc_array_push_slice(pbc_array array, struct pbc_slice *s) {
 	pbc_var var;
 	var->m = *s;
 	_pbcA_push(array,var);
 }
 
-void 
+LUALIB_API void
 pbc_array_push_real(pbc_array array, double v) {
 	pbc_var var;
 	var->real = v;

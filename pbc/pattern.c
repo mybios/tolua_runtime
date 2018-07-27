@@ -59,7 +59,7 @@ _pattern_set_default(struct _pattern_field *field, char *output) {
 	set_default_v(output + field->offset, field->ctype, field->defv);
 }
 
-void
+LUALIB_API void
 pbc_pattern_set_default(struct pbc_pattern *pat, void *output) {
 	int i;
 	for (i=0;i<pat->count;i++) {
@@ -349,7 +349,7 @@ unpack_array(int ptype, char *buffer, struct atom * a, pbc_array _array) {
 	return 0;
 }
 
-void 
+LUALIB_API void
 pbc_pattern_close_arrays(struct pbc_pattern *pat, void * data) {
 	int i;
 	for (i=0;i<pat->count;i++) {
@@ -773,7 +773,7 @@ _is_default(struct _pattern_field * pf, void * in) {
 	return false;
 }
 
-int 
+LUALIB_API int
 pbc_pattern_pack(struct pbc_pattern *pat, void *input, struct pbc_slice * s)
 {
 	struct pbc_slice slice = *s;
@@ -807,7 +807,7 @@ pbc_pattern_pack(struct pbc_pattern *pat, void *input, struct pbc_slice * s)
 	return ret;
 }
 
-int 
+LUALIB_API int
 pbc_pattern_unpack(struct pbc_pattern *pat, struct pbc_slice *s, void * output) {
 	if (s->len == 0) {
 		pbc_pattern_set_default(pat, output);
@@ -1065,7 +1065,7 @@ _error:
 	return NULL;
 }
 
-struct pbc_pattern * 
+LUALIB_API struct pbc_pattern *
 pbc_pattern_new(struct pbc_env * env , const char * message, const char * format, ... ) {
 	struct _message *m = _pbcP_get_message(env, message);
 	if (m==NULL) {
@@ -1128,7 +1128,7 @@ _error:
 	return NULL;
 }
 
-void 
+LUALIB_API void
 pbc_pattern_delete(struct pbc_pattern * pat) {
 	free(pat);
 }

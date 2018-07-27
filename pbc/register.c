@@ -302,7 +302,7 @@ _register_no_dependency(struct pbc_env * p,struct pbc_rmessage ** files , int n 
 	return r;
 }
 
-int
+LUALIB_API int
 pbc_register(struct pbc_env * p, struct pbc_slice *slice) {
 	struct pbc_rmessage * message = pbc_rmessage_new(p, "google.protobuf.FileDescriptorSet", slice);
 	if (message == NULL) {

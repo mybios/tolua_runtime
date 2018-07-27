@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-const char * 
+LUALIB_API const char *
 pbc_error(struct pbc_env * p) {
 	const char *err = p->lasterror;
 	p->lasterror = "";
@@ -21,7 +21,7 @@ _pbcP_get_message(struct pbc_env * p , const char *name) {
 	return (struct _message *)_pbcM_sp_query(p->msgs, name);
 }
 
-struct pbc_env * 
+LUALIB_API struct pbc_env *
 pbc_new(void) {
 	struct pbc_env * p = (struct pbc_env *)malloc(sizeof(*p));
 	p->files = _pbcM_sp_new(0 , NULL);
@@ -59,7 +59,7 @@ free_msg(void *p) {
 	free(p);
 }
 
-void 
+LUALIB_API void
 pbc_delete(struct pbc_env *p) {
 	_pbcM_sp_foreach(p->enums, free_enum);
 	_pbcM_sp_delete(p->enums);
@@ -238,7 +238,7 @@ _pbcP_type(struct _field * field, const char ** type) {
 	return ret;
 }
 
-int 
+LUALIB_API int
 pbc_type(struct pbc_env * p, const char * type_name , const char * key , const char ** type) {
 	struct _message *m = _pbcP_get_message(p, type_name);
 	if (m==NULL) {
@@ -251,7 +251,7 @@ pbc_type(struct pbc_env * p, const char * type_name , const char * key , const c
 	return _pbcP_type(field, type);
 }
 
-int
+LUALIB_API int
 pbc_enum_id(struct pbc_env *env, const char *enum_type, const char *enum_name) {
 	struct _enum *enum_map = (struct _enum *)_pbcM_sp_query(env->enums, enum_type);
 	if(!enum_map) {

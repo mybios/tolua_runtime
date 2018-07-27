@@ -307,7 +307,7 @@ _pbc_rmessage_new(struct pbc_rmessage * ret , struct _message * type , void *buf
 	_pbcC_close(_ctx);
 }
 
-struct pbc_rmessage * 
+LUALIB_API struct pbc_rmessage *
 pbc_rmessage_new(struct pbc_env * env, const char * type_name ,  struct pbc_slice * slice) {
 	struct _message * msg = _pbcP_get_message(env, type_name);
 	if (msg == NULL) {
@@ -327,14 +327,14 @@ pbc_rmessage_new(struct pbc_env * env, const char * type_name ,  struct pbc_slic
 	return m;
 }
 
-void 
+LUALIB_API void
 pbc_rmessage_delete(struct pbc_rmessage * m) {
 	if (m) {
 		_pbcH_delete(m->heap);
 	}
 }
 
-const char * 
+LUALIB_API const char *
 pbc_rmessage_string(struct pbc_rmessage * m , const char *key , int index, int *sz) {
 	struct value * v = (struct value *)_pbcM_sp_query(m->index,key);
 	int type = 0;
@@ -367,7 +367,7 @@ pbc_rmessage_string(struct pbc_rmessage * m , const char *key , int index, int *
 	return var->s.str;
 }
 
-uint32_t 
+LUALIB_API uint32_t
 pbc_rmessage_integer(struct pbc_rmessage *m , const char *key , int index, uint32_t *hi) {
 	struct value * v = (struct value *)_pbcM_sp_query(m->index,key);
 	pbc_var var;
@@ -396,7 +396,7 @@ pbc_rmessage_integer(struct pbc_rmessage *m , const char *key , int index, uint3
 	return var->integer.low;
 }
 
-double 
+LUALIB_API double
 pbc_rmessage_real(struct pbc_rmessage * m, const char *key , int index) {
 	struct value * v = (struct value *)_pbcM_sp_query(m->index,key);
 	pbc_var var;
@@ -413,7 +413,7 @@ pbc_rmessage_real(struct pbc_rmessage * m, const char *key , int index) {
 }
 
 
-struct pbc_rmessage * 
+LUALIB_API struct pbc_rmessage *
 pbc_rmessage_message(struct pbc_rmessage * rm, const char *key, int index) {
 	struct value * v = (struct value *)_pbcM_sp_query(rm->index,key);
 	if (v == NULL) {
@@ -441,7 +441,7 @@ pbc_rmessage_message(struct pbc_rmessage * rm, const char *key, int index) {
 	}
 }
 
-int 
+LUALIB_API int
 pbc_rmessage_size(struct pbc_rmessage *m, const char *key) {
 	struct value * v = (struct value *)_pbcM_sp_query(m->index,key);
 	if (v == NULL) {
