@@ -1225,7 +1225,7 @@ static int class_new_event(lua_State *L)
     {
         return luaL_argerror(L, 1, "table");
     }
-
+	int i;
     int count = lua_gettop(L); 
     lua_pushvalue(L,1);  
 
@@ -1237,7 +1237,7 @@ static int class_new_event(lua_State *L)
 
         if (lua_isfunction(L,-1))
         {            
-            for (int i = 2; i <= count; i++)
+            for (i = 2; i <= count; i++)
             {
                 lua_pushvalue(L, i);                    
             }
@@ -2189,7 +2189,8 @@ static const struct luaL_Reg tolua_funcs[] =
 
 void tolua_setluabaseridx(lua_State *L)
 {    
-	for (int i = LUA_RIDX_LAST + 1; i <= 64; i++)
+	int i;
+	for (i = LUA_RIDX_LAST + 1; i <= 64; i++)
 	{
 		lua_pushinteger(L, i);
 		lua_rawseti(L, LUA_REGISTRYINDEX, i);
