@@ -38,6 +38,11 @@
     <ClCompile Include="..\cjson\fpconv.c" />
     <ClCompile Include="..\cjson\lua_cjson.c" />
     <ClCompile Include="..\cjson\strbuf.c" />
+    <ClCompile Include="..\ejoysdk\ejoy_sdk.c" />
+    <ClCompile Include="..\ejoysdk\jni_bundle.c" />
+    <ClCompile Include="..\ejoysdk\lsha1.c" />
+    <ClCompile Include="..\ejoysdk\lua-crypt.c" />
+    <ClCompile Include="..\ejoysdk\luavm.c" />
     <ClCompile Include="..\lpeg.c" />
     <ClCompile Include="..\luasocket\auxiliar.c" />
     <ClCompile Include="..\luasocket\buffer.c" />
@@ -110,6 +115,7 @@
   <ItemGroup>
     <ClInclude Include="..\cjson\fpconv.h" />
     <ClInclude Include="..\cjson\strbuf.h" />
+    <ClInclude Include="..\ejoysdk\jni_bundle.h" />
     <ClInclude Include="..\lpeg.h" />
     <ClInclude Include="..\luasocket\auxiliar.h" />
     <ClInclude Include="..\luasocket\buffer.h" />

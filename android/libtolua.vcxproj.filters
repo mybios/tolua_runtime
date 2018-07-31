@@ -16,6 +16,9 @@
     <Filter Include="tolua">
       <UniqueIdentifier>{48e62b21-0737-4922-90df-0bfc50ccad4a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ejoysdk">
+      <UniqueIdentifier>{8b37ec5f-faf3-46ee-a7ad-14af14dee1a7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\cjson\fpconv.c">
@@ -231,6 +234,21 @@
     <ClCompile Include="..\luasocket\usocket.c">
       <Filter>luasocket</Filter>
     </ClCompile>
+    <ClCompile Include="..\ejoysdk\ejoy_sdk.c">
+      <Filter>ejoysdk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ejoysdk\jni_bundle.c">
+      <Filter>ejoysdk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ejoysdk\lsha1.c">
+      <Filter>ejoysdk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ejoysdk\lua-crypt.c">
+      <Filter>ejoysdk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ejoysdk\luavm.c">
+      <Filter>ejoysdk</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\cjson\fpconv.h">
@@ -412,6 +430,9 @@
     </ClInclude>
     <ClInclude Include="..\luasocket\usocket.h">
       <Filter>luasocket</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ejoysdk\jni_bundle.h">
+      <Filter>ejoysdk</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
