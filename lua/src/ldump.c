@@ -56,9 +56,9 @@ static void DumpByte (int y, DumpState *D) {
 
 
 /* DumpInt Buff Size */
-#define DIBS    ((sizeof(size_t) * 8 / 7) + 1)
+#define DIBS    ((sizeof(int) * 8 / 7) + 1)
 
-static void DumpSize (size_t x, DumpState *D) {
+static void DumpSize (int x, DumpState *D) {
   lu_byte buff[DIBS];
   int n = 0;
   do {
@@ -89,7 +89,7 @@ static void DumpString (const TString *s, DumpState *D) {
   if (s == NULL)
     DumpSize(0, D);
   else {
-    size_t size = tsslen(s);
+    int size = tsslen(s);
     const char *str = getstr(s);
     DumpSize(size + 1, D);
     DumpVector(str, size, D);
@@ -202,7 +202,7 @@ static void DumpHeader (DumpState *D) {
   DumpByte(LUAC_FORMAT, D);
   DumpLiteral(LUAC_DATA, D);
   DumpByte(sizeof(int), D);
-  DumpByte(sizeof(size_t), D);
+  DumpByte(sizeof(int), D);
   DumpByte(sizeof(Instruction), D);
   DumpByte(sizeof(lua_Integer), D);
   DumpByte(sizeof(lua_Number), D);

@@ -99,7 +99,7 @@ static lua_Integer LoadInteger (LoadState *S) {
 ** Load a nullable string
 */
 static TString *LoadStringN (LoadState *S) {
-  size_t size = LoadSize(S);
+  int size = LoadSize(S);
   if (size == 0)
     return NULL;
   else if (--size <= LUAI_MAXSHORTLEN) {  /* short string? */
@@ -269,7 +269,7 @@ static void checkHeader (LoadState *S) {
     error(S, "format mismatch in");
   checkliteral(S, LUAC_DATA, "corrupted");
   checksize(S, int);
-  checksize(S, size_t);
+  checksize(S, int);
   checksize(S, Instruction);
   checksize(S, lua_Integer);
   checksize(S, lua_Number);
