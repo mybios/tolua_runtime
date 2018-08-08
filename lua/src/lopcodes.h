@@ -192,38 +192,6 @@ typedef enum {
 /*----------------------------------------------------------------------
 name		args	description
 ------------------------------------------------------------------------*/
-OP_MOVE,/*	A B	R(A) := R(B)					*/
-OP_LOADI,/*	A sBx	R(A) := sBx					*/
-OP_LOADF,/*	A sBx	R(A) := (lua_Number)sBx				*/
-OP_LOADK,/*	A Bx	R(A) := K(Bx)					*/
-OP_LOADKX,/*	A 	R(A) := K(extra arg)				*/
-OP_LOADBOOL,/*	A B C	R(A) := (Bool)B; if (C) pc++			*/
-OP_LOADNIL,/*	A B	R(A), R(A+1), ..., R(A+B) := nil		*/
-OP_GETUPVAL,/*	A B	R(A) := UpValue[B]				*/
-OP_SETUPVAL,/*	A B	UpValue[B] := R(A)				*/
-
-OP_GETTABUP,/*	A B C	R(A) := UpValue[B][K(C):string]			*/
-OP_GETTABLE,/*	A B C	R(A) := R(B)[R(C)]				*/
-OP_GETI,/*	A B C	R(A) := R(B)[C]					*/
-OP_GETFIELD,/*	A B C	R(A) := R(B)[K(C):string]			*/
-
-OP_SETTABUP,/*	A B C	UpValue[A][K(B):string] := RK(C)		*/
-OP_SETTABLE,/*	A B C	R(A)[R(B)] := RK(C)				*/
-OP_SETI,/*	A B C	R(A)[B] := RK(C)				*/
-OP_SETFIELD,/*	A B C	R(A)[K(B):string] := RK(C)			*/
-
-OP_NEWTABLE,/*	A B C	R(A) := {} (size = B,C)				*/
-
-OP_SELF,/*	A B C	R(A+1) := R(B); R(A) := R(B)[RK(C):string]	*/
-
-OP_ADDI,/*	A B sC	R(A) := R(B) + C				*/
-OP_SUBI,/*	A B sC	R(A) := R(B) - C				*/
-OP_MULI,/*	A B sC	R(A) := R(B) * C				*/
-OP_MODI,/*	A B sC	R(A) := R(B) % C				*/
-OP_POWI,/*	A B sC	R(A) := R(B) ^ C				*/
-OP_DIVI,/*	A B sC	R(A) := R(B) / C				*/
-OP_IDIVI,/*	A B sC	R(A) := R(B) // C				*/
-
 OP_BANDK,/*	A B C	R(A) := R(B) & K(C):integer			*/
 OP_BORK,/*	A B C	R(A) := R(B) | K(C):integer			*/
 OP_BXORK,/*	A B C	R(A) := R(B) ~ K(C):integer			*/
@@ -264,6 +232,41 @@ OP_GTI,/*	A sB	if ((R(A) > sB) ~= k) then pc++			*/
 OP_GEI,/*	A sB	if ((R(A) >= sB) ~= k) then pc++		*/
 
 OP_TEST,/*	A 	if (not R(A) == k) then pc++			*/
+
+
+OP_MOVE,/*	A B	R(A) := R(B)					*/
+OP_LOADI,/*	A sBx	R(A) := sBx					*/
+OP_LOADF,/*	A sBx	R(A) := (lua_Number)sBx				*/
+OP_LOADK,/*	A Bx	R(A) := K(Bx)					*/
+OP_LOADKX,/*	A 	R(A) := K(extra arg)				*/
+OP_LOADBOOL,/*	A B C	R(A) := (Bool)B; if (C) pc++			*/
+OP_LOADNIL,/*	A B	R(A), R(A+1), ..., R(A+B) := nil		*/
+OP_GETUPVAL,/*	A B	R(A) := UpValue[B]				*/
+OP_SETUPVAL,/*	A B	UpValue[B] := R(A)				*/
+
+OP_GETTABUP,/*	A B C	R(A) := UpValue[B][K(C):string]			*/
+OP_GETTABLE,/*	A B C	R(A) := R(B)[R(C)]				*/
+OP_GETI,/*	A B C	R(A) := R(B)[C]					*/
+OP_GETFIELD,/*	A B C	R(A) := R(B)[K(C):string]			*/
+
+OP_SETTABUP,/*	A B C	UpValue[A][K(B):string] := RK(C)		*/
+OP_SETTABLE,/*	A B C	R(A)[R(B)] := RK(C)				*/
+OP_SETI,/*	A B C	R(A)[B] := RK(C)				*/
+OP_SETFIELD,/*	A B C	R(A)[K(B):string] := RK(C)			*/
+
+OP_NEWTABLE,/*	A B C	R(A) := {} (size = B,C)				*/
+
+OP_SELF,/*	A B C	R(A+1) := R(B); R(A) := R(B)[RK(C):string]	*/
+
+OP_ADDI,/*	A B sC	R(A) := R(B) + C				*/
+OP_SUBI,/*	A B sC	R(A) := R(B) - C				*/
+OP_MULI,/*	A B sC	R(A) := R(B) * C				*/
+OP_MODI,/*	A B sC	R(A) := R(B) % C				*/
+OP_POWI,/*	A B sC	R(A) := R(B) ^ C				*/
+OP_DIVI,/*	A B sC	R(A) := R(B) / C				*/
+OP_IDIVI,/*	A B sC	R(A) := R(B) // C				*/
+
+
 OP_TESTSET,/*	A B	if (not R(B) == k) then R(A) := R(B) else pc++	*/
 
 OP_CALL,/*	A B C	R(A), ... ,R(A+C-2) := R(A)(R(A+1), ... ,R(A+B-1)) */

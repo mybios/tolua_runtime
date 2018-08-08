@@ -20,32 +20,6 @@
 #if defined(LUAI_DEFOPNAMES)
 
 LUAI_DDEF const char *const luaP_opnames[NUM_OPCODES+1] = {
-  "MOVE",
-  "LOADI",
-  "LOADF",
-  "LOADK",
-  "LOADKX",
-  "LOADBOOL",
-  "LOADNIL",
-  "GETUPVAL",
-  "SETUPVAL",
-  "GETTABUP",
-  "GETTABLE",
-  "GETI",
-  "GETFIELD",
-  "SETTABUP",
-  "SETTABLE",
-  "SETI",
-  "SETFIELD",
-  "NEWTABLE",
-  "SELF",
-  "ADDI",
-  "SUBI",
-  "MULI",
-  "MODI",
-  "POWI",
-  "DIVI",
-  "IDIVI",
   "BANDK",
   "BORK",
   "BXORK",
@@ -80,6 +54,32 @@ LUAI_DDEF const char *const luaP_opnames[NUM_OPCODES+1] = {
   "GTI",
   "GEI",
   "TEST",
+  "MOVE",
+  "LOADI",
+  "LOADF",
+  "LOADK",
+  "LOADKX",
+  "LOADBOOL",
+  "LOADNIL",
+  "GETUPVAL",
+  "SETUPVAL",
+  "GETTABUP",
+  "GETTABLE",
+  "GETI",
+  "GETFIELD",
+  "SETTABUP",
+  "SETTABLE",
+  "SETI",
+  "SETFIELD",
+  "NEWTABLE",
+  "SELF",
+  "ADDI",
+  "SUBI",
+  "MULI",
+  "MODI",
+  "POWI",
+  "DIVI",
+  "IDIVI",
   "TESTSET",
   "CALL",
   "TAILCALL",
@@ -105,33 +105,7 @@ LUAI_DDEF const char *const luaP_opnames[NUM_OPCODES+1] = {
 
 LUAI_DDEF const lu_byte luaP_opmodes[NUM_OPCODES] = {
 /*       OT IT T  A  mode		   opcode  */
-  opmode(0, 0, 0, 1, iABC)		/* OP_MOVE */
- ,opmode(0, 0, 0, 1, iAsBx)		/* OP_LOADI */
- ,opmode(0, 0, 0, 1, iAsBx)		/* OP_LOADF */
- ,opmode(0, 0, 0, 1, iABx)		/* OP_LOADK */
- ,opmode(0, 0, 0, 1, iABx)		/* OP_LOADKX */
- ,opmode(0, 0, 0, 1, iABC)		/* OP_LOADBOOL */
- ,opmode(0, 0, 0, 1, iABC)		/* OP_LOADNIL */
- ,opmode(0, 0, 0, 1, iABC)		/* OP_GETUPVAL */
- ,opmode(0, 0, 0, 0, iABC)		/* OP_SETUPVAL */
- ,opmode(0, 0, 0, 1, iABC)		/* OP_GETTABUP */
- ,opmode(0, 0, 0, 1, iABC)		/* OP_GETTABLE */
- ,opmode(0, 0, 0, 1, iABC)		/* OP_GETI */
- ,opmode(0, 0, 0, 1, iABC)		/* OP_GETFIELD */
- ,opmode(0, 0, 0, 0, iABC)		/* OP_SETTABUP */
- ,opmode(0, 0, 0, 0, iABC)		/* OP_SETTABLE */
- ,opmode(0, 0, 0, 0, iABC)		/* OP_SETI */
- ,opmode(0, 0, 0, 0, iABC)		/* OP_SETFIELD */
- ,opmode(0, 0, 0, 1, iABC)		/* OP_NEWTABLE */
- ,opmode(0, 0, 0, 1, iABC)		/* OP_SELF */
- ,opmode(0, 0, 0, 1, iABC)		/* OP_ADDI */
- ,opmode(0, 0, 0, 1, iABC)		/* OP_SUBI */
- ,opmode(0, 0, 0, 1, iABC)		/* OP_MULI */
- ,opmode(0, 0, 0, 1, iABC)		/* OP_MODI */
- ,opmode(0, 0, 0, 1, iABC)		/* OP_POWI */
- ,opmode(0, 0, 0, 1, iABC)		/* OP_DIVI */
- ,opmode(0, 0, 0, 1, iABC)		/* OP_IDIVI */
- ,opmode(0, 0, 0, 1, iABC)		/* OP_BANDK */
+ opmode(0, 0, 0, 1, iABC)		/* OP_BANDK */
  ,opmode(0, 0, 0, 1, iABC)		/* OP_BORK */
  ,opmode(0, 0, 0, 1, iABC)		/* OP_BXORK */
  ,opmode(0, 0, 0, 1, iABC)		/* OP_SHRI */
@@ -165,6 +139,32 @@ LUAI_DDEF const lu_byte luaP_opmodes[NUM_OPCODES] = {
  ,opmode(0, 0, 1, 0, iABC)		/* OP_GTI */
  ,opmode(0, 0, 1, 0, iABC)		/* OP_GEI */
  ,opmode(0, 0, 1, 0, iABC)		/* OP_TEST */
+ ,opmode(0, 0, 0, 1, iABC)		/* OP_MOVE */
+ ,opmode(0, 0, 0, 1, iAsBx)		/* OP_LOADI */
+ ,opmode(0, 0, 0, 1, iAsBx)		/* OP_LOADF */
+ ,opmode(0, 0, 0, 1, iABx)		/* OP_LOADK */
+ ,opmode(0, 0, 0, 1, iABx)		/* OP_LOADKX */
+ ,opmode(0, 0, 0, 1, iABC)		/* OP_LOADBOOL */
+ ,opmode(0, 0, 0, 1, iABC)		/* OP_LOADNIL */
+ ,opmode(0, 0, 0, 1, iABC)		/* OP_GETUPVAL */
+ ,opmode(0, 0, 0, 0, iABC)		/* OP_SETUPVAL */
+ ,opmode(0, 0, 0, 1, iABC)		/* OP_GETTABUP */
+ ,opmode(0, 0, 0, 1, iABC)		/* OP_GETTABLE */
+ ,opmode(0, 0, 0, 1, iABC)		/* OP_GETI */
+ ,opmode(0, 0, 0, 1, iABC)		/* OP_GETFIELD */
+ ,opmode(0, 0, 0, 0, iABC)		/* OP_SETTABUP */
+ ,opmode(0, 0, 0, 0, iABC)		/* OP_SETTABLE */
+ ,opmode(0, 0, 0, 0, iABC)		/* OP_SETI */
+ ,opmode(0, 0, 0, 0, iABC)		/* OP_SETFIELD */
+ ,opmode(0, 0, 0, 1, iABC)		/* OP_NEWTABLE */
+ ,opmode(0, 0, 0, 1, iABC)		/* OP_SELF */
+ ,opmode(0, 0, 0, 1, iABC)		/* OP_ADDI */
+ ,opmode(0, 0, 0, 1, iABC)		/* OP_SUBI */
+ ,opmode(0, 0, 0, 1, iABC)		/* OP_MULI */
+ ,opmode(0, 0, 0, 1, iABC)		/* OP_MODI */
+ ,opmode(0, 0, 0, 1, iABC)		/* OP_POWI */
+ ,opmode(0, 0, 0, 1, iABC)		/* OP_DIVI */
+ ,opmode(0, 0, 0, 1, iABC)		/* OP_IDIVI */
  ,opmode(0, 0, 1, 1, iABC)		/* OP_TESTSET */
  ,opmode(1, 1, 0, 1, iABC)		/* OP_CALL */
  ,opmode(1, 1, 0, 1, iABC)		/* OP_TAILCALL */
