@@ -22,6 +22,17 @@
 #include "lauxlib.h"
 #include "lualib.h"
 
+#if defined(LUA_USE_WINDOWS)
+#include <windows.h>
+
+static int
+windows_filename(lua_State *L, const char * utf8filename, int usz, wchar_t * winbuffer, int wsz) {
+	wsz = MultiByteToWideChar(CP_UTF8, 0, utf8filename, usz, winbuffer, wsz);
+	if (wsz == 0)
+		return luaL_error(L, "convert to windows utf-16 filename fail");
+	return wsz;
+}
+#endif
 
 
 
@@ -247,7 +258,15 @@ static LStream *newfile (lua_State *L) {
 
 static void opencheck (lua_State *L, const char *fname, const char *mode) {
   LStream *p = newfile(L);
+#if defined(LUA_USE_WINDOWS)
+  wchar_t wname[256];
+  windows_filename(L, fname, strlen(fname), wname, sizeof(wname));
+  wchar_t wmode[256];
+  windows_filename(L, mode, strlen(mode), wmode, sizeof(wmode));
+  p->f = _wfopen(wname, wmode);
+#else
   p->f = fopen(fname, mode);
+#endif
   if (p->f == NULL)
     luaL_error(L, "cannot open file '%s' (%s)", fname, strerror(errno));
 }
@@ -259,7 +278,15 @@ static int io_open (lua_State *L) {
   LStream *p = newfile(L);
   const char *md = mode;  /* to traverse/check mode */
   luaL_argcheck(L, l_checkmode(md), 2, "invalid mode");
+#if defined(LUA_USE_WINDOWS)
+  wchar_t wname[256];
+  windows_filename(L, filename, strlen(filename), wname, sizeof(wname));
+  wchar_t wmode[256];
+  windows_filename(L, mode, strlen(mode), wmode, sizeof(wmode));
+  p->f = _wfopen(wname, wmode);
+#else
   p->f = fopen(filename, mode);
+#endif
   return (p->f == NULL) ? luaL_fileresult(L, 0, filename) : 1;
 }
 
